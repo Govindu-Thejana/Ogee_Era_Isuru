@@ -2,14 +2,14 @@
     "version": 2,
     "builds": [
       {
-        "src": "*.js",
+        "src": "serevr.js",
         "use": "@vercel/node"
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-      "dest": "/"
+      "dest": "serevr.js"
     }
   ]
 }
