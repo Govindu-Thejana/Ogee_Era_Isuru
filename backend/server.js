@@ -17,8 +17,11 @@ connectDB()
 connectCloudinary()
 
 app.use(express.json())
-app.use(cors())
-
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 //api endpoints
 app.use('/api/user', userRouter)
 app.use('/api/product', productRouter)
@@ -26,10 +29,12 @@ app.use('/api/cart', cartRouter)
 app.use('/api/order', orderRouter)
 
 app.get('/', (req, res) => {
-    res.send('API Working')
-
+    return res.status(200).send("API Working");
 })
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })
+
+// Export the app for Vercel
+module.exports = app;
